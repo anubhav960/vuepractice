@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>v-if If Statements</title>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.special {background:yellow; border: 1px dotted #fe0000; padding:30px; display:block; text-align:center;}
+			.important {font-weight:bold; font-size:30px;}
+			.card {box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s; width: 400px;}
+			.card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); display: none;}
+			.container {padding: 2px 16px;}
+			.card img {width: 400px; height: 400px;}
+		</style>
+	</head>
+	<body>
+	
+	<div id="app">
+		<span v-if="profile">
+			<div class="card">
+				<span v-if="profile.pic">
+					<img v-bind:src = "profile.pic">
+				</span>
+				<span v-else>
+					<img src = "https://www.accessdentalcare.in/wp-content/uploads/2017/07/ProfileMale.jpg">
+				</span>
+				<div class = "container">
+					Profile of {{profile.fname}} {{profile.lname}}<br>
+					Description : {{profile.desc}}<br>
+					<span v-if = "profile.bio">
+						Bio : {{profile.bio}}
+					</span>
+					<span v-else>
+						No bio available
+					</span>
+				</div>
+			</div>
+		</span>
+		<span v-else>
+			No Profile Data found.
+		</span>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		
+		data:{
+			
+			profile:{
+				fname: "Anubhav",
+				lname: "Sharma",
+				card: "card",
+				container: "container",
+				desc: "person",
+				bio: "",
+				//pic: "https://static0.srcdn.com/wordpress/wp-content/uploads/2021/04/Chris-Hemsworth-as-Thor-in-Ragnarok.jpg?q=50&fit=crop&w=943&h=500&dpr=1.5"
+			}
+			
+		}
+		
+	});
+	</script>
+	
+		<!--
+		//step 1: Read Code Above
+		//step 2: Does the profile show up?
+		
+		v-if="boolean_expression"
+		v-else-if="boolean_expression"
+		v-else
+		
+		
+		You can code an if, else if, else statement into your render using the v-if, v-else-if, v-else.
+		Just like in regular programming, v-else has no condition
+		
+		Notice how the "profile" object is null. Reminder that null is Falsey in the boolean context.
+		
+		ASYNCHRONOUS LEARNING EXERCISE
+		1. Use the profile object to store information about yourself {fname, lname, desc, bio, pic}
+		2. Create a figure, figcaption, and image markup which acts as a description for yourself
+			(Something like this https://www.w3schools.com/howto/howto_css_cards.asp)
+		3. Write conditionals if information is missing (i.e. 'no bio available' if bio is blank, generic image if no pic is found)
+		-->
+	</body>
+</html>
